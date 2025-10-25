@@ -21,7 +21,6 @@
       <form method="POST" action="{{ route('login') }}">
         @csrf
         <div class="modal-body">
-          <!-- Exibir erros de validação -->
           @if($errors->any())
             <div class="alert alert-danger">
               {{ $errors->first() }}
