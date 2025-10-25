@@ -21,11 +21,18 @@
       <form method="POST" action="{{ route('login') }}">
         @csrf
         <div class="modal-body">
+          <!-- Exibir erros de validação -->
+          @if($errors->any())
+            <div class="alert alert-danger">
+              {{ $errors->first() }}
+            </div>
+          @endif
+          
           <div class="form-group">
-            <input placeholder="Nome" type="text" class="form-control" id="nome" name="nome" required>
+            <input placeholder="Nome" type="text" class="form-control @error('nome') is-invalid @enderror" id="nome" name="nome" value="{{ old('nome') }}" required>
           </div>
           <div class="form-group">
-            <input placeholder="Senha" type="password" class="form-control" id="senha" name="senha" required>
+            <input placeholder="Senha" type="password" class="form-control @error('senha') is-invalid @enderror" id="senha" name="senha" required>
           </div>
         </div>
         <div class="modal-footer">
@@ -109,13 +116,6 @@
       </div>
       </div>
     </footer>
-    @if ($errors->any())
-<script>
-    $(document).ready(function() {
-        $('#loginModal').modal('show');
-    });
-</script>
-@endif
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
