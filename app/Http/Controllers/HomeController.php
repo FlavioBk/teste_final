@@ -12,15 +12,16 @@ class HomeController extends Controller
 {
     public function index(Request $request)
     {
-        // Verificar se já está autenticado
         if (Auth::check()) {
             return redirect('/dashboard');
         }
         
-        $publicacoes = Publicacao::with('empresa')->get();
-        return view('home', compact('publicacoes'));
+        $publicacoes = Publicacao::with(['empresa', 'comentarios'])->get();
+        $totalLikes = Publicacao::sum('likes');
+        $totalDislikes = Publicacao::sum('dislikes');
+        
+        return view('home', compact('publicacoes', 'totalLikes', 'totalDislikes'));
     }
-
 
     public function logout()
     {

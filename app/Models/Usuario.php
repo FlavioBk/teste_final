@@ -13,16 +13,9 @@ class Usuario extends Authenticatable
     protected $table = 'usuario';
     protected $primaryKey = 'id';  
 
-    // Apenas os campos que você realmente usa
-    protected $fillable = ['nome', 'senha', 'foto']; // Removi email se não usa
+    protected $fillable = ['nome', 'senha', 'foto']; 
 
     protected $hidden = [
         'senha',
     ];
-
-    // Se estiver usando texto puro, COMENTE este método:
-    // public function getAuthPassword()
-    // {
-    //     return $this->senha;
-    // }
 }
